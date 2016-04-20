@@ -13,11 +13,15 @@ public class Review {
     //Class variables
     private double rating;
     private String review;
+    private Customer customer;
+    private Movie movie;
     
     //Class constructor
-    public Review (double Rating, String Review) {
+    public Review (Customer Customer, Movie Movie, double Rating, String Review) {
         this.rating = Rating;
         this.review = Review;
+        this.customer = Customer;
+        this.movie = Movie;
     }
 
     //Class get fucntions

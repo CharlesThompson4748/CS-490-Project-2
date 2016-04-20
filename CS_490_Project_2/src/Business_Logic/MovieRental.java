@@ -62,6 +62,8 @@ public class MovieRental {
         controller.addActor("Another One", "Another Women", "FEMALE");
         controller.addActor("3.6", "Mr. T", "MALE");
         
+        controller.printLists();
+        
         //Adding Rentals
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "RENTED");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE");
@@ -70,10 +72,10 @@ public class MovieRental {
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "RENTED");
         
         //Adding Reviews
-        controller.addReview("Ted", "Bender", 4.8, "A bear that came to life and is a terrible influence on the main character, what isnt there to like.");
-        controller.addReview("That One Movie", "Charlie", 1.2, "Almost as bad as That Other Movie.");
-        controller.addReview("Some Movie Nobody Has Herd Of", "Fry", 2.1, "So bad I forgot what it was even called.");
-        controller.addReview("1999 I Don't Know Something Awefull", "Zoidberg", 8.2, "Surprisingly good.");
+        controller.addReview("Ted", "Bender Bending Rodriguez", 4.8, "A bear that came to life and is a terrible influence on the main character, what isnt there to like.");
+        controller.addReview("That One Movie", "Charles Thompson", 1.2, "Almost as bad as That Other Movie.");
+        controller.addReview("Some Movie Nobody Has Herd Of", "Phillip J. Fry", 2.1, "So bad I forgot what it was even called.");
+        controller.addReview("1999 I Don't Know Something Awefull", "John A. Zoidberg", 8.2, "Surprisingly good.");
         
     }
 }

@@ -31,13 +31,6 @@ public class Customer implements Searchable{
         this.password = Password;
     }
     
-    //Function to add a Review object to the reviews list
-    //Input: Review object
-    //Output: Void
-    public void newReview(Review review){
-        reviews.add(review);
-    }
-    
     //Overriden interface function to find matches for searches of Customer objects
     //Input: String search key
     //Output: Boolean 
@@ -53,6 +46,12 @@ public class Customer implements Searchable{
             return true;
         else 
             return false;
+    }
+    
+    @Override
+    public String info() {
+        return "\nEmail: " + email + "\nName: " + name + "\nAddress: " + address + "\nPhone Number: " + phoneNum + 
+                "\nPassword: " + password;
     }
     
 }

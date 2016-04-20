@@ -12,4 +12,5 @@ package Business_Logic;
 public interface Searchable {
     //Interface functions
     public boolean contains(String key);
+    public String info();
 }

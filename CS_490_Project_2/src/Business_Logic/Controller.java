@@ -38,6 +38,22 @@ public class Controller {
         return Singleton;
     }
     
+    //Function for testing
+    public void printLists(){
+        System.out.println("Customers\n");
+        for(Customer customer:customers){
+            System.out.println(customer.info());
+        }
+        System.out.println("Movies\n");
+        for(Movie movie:movies){
+            System.out.println(movie.info() + "\nDVDs");
+            movie.prindDVDs();
+            System.out.println("\nActors");
+            movie.printActors();
+        }
+        
+        
+    }
     //Function to add a new Customer
     //Input: Customer email, name, address, phone number, and password
     //Output: Customer object
@@ -87,9 +103,7 @@ public class Controller {
     public void addReview(String Movie, String Customer, double Rating, String Review) {
         Customer customer = searchCustomers(Customer);
         Movie movie = searchMovies(Movie);
-        Review review = new Review(Rating, Review);
-        customer.newReview(review);
-        movie.newReview(review);
+        Review review = new Review(customer, movie, Rating, Review);
     }
     
     //Function to convert a String to an Gender enum object
@@ -137,7 +151,7 @@ public class Controller {
         Movie m = null;
         for(Movie movie:movies) {
             if(movie.contains(Key)) {
-                //Match found creating new Actor object
+                //Match found 
                 m = movie;
                 break;
             }
@@ -152,7 +166,7 @@ public class Controller {
         Customer c = null;
         for(Customer customer:customers){
             if(customer.contains(Key)) {
-                //Match found creating new Actor object
+                //Match found
                 c = customer;
                 break;
             }

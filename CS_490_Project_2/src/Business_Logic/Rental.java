@@ -6,6 +6,7 @@
 package Business_Logic;
 
 import java.util.Calendar;
+import java.util.LinkedList;
 
 /**
  *
@@ -16,11 +17,20 @@ public class Rental {
     private Calendar rentalDate;
     private Calendar returnDate;
     private Status status;
+    private DVD dvd;
+    private Review review;
     
     //Class constructor
     public Rental (Calendar RentDate, Calendar ReturnDate, Status status){
         this.rentalDate = RentDate;
         this.returnDate = ReturnDate;
         this.status = status;
+    }
+    
+    //Function to add a Review object to the reviews list
+    //Input: Review object
+    //Output: Void
+    public void newReview(Review review){
+        this.review = review;
     }
 }

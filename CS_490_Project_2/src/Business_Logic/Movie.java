@@ -21,6 +21,7 @@ public class Movie implements Searchable{
     //Class list for actors in the movie
     private LinkedList<Actor> actors = new LinkedList<>();
     private LinkedList<Review> reviews = new LinkedList<>();
+    private LinkedList<DVD> dvds = new LinkedList<>();
     
     //Class constructor
     public Movie (double Rating, int Year, String Name) { 
@@ -29,12 +30,25 @@ public class Movie implements Searchable{
         this.name = Name;   
     }
     
+    //Function for testing
+    public void printActors() {
+        for(Actor actor:actors){
+            System.out.println(actor.info());
+        }
+    }
+    
+    //Function for testing
+    public void prindDVDs(){
+        for(DVD dvd:dvds){
+            System.out.println(dvd.info());
+        }
+    }
     //Function to add a DVD 
     //Input: DVD serial number and the lost status
     //Output: DVD object
     public DVD addDVD (int SN, boolean Lost){
         DVD newDVD = new DVD(SN, Lost);
-        dvd = newDVD;
+        dvds.add(newDVD);
         return newDVD;
     }
     
@@ -46,14 +60,7 @@ public class Movie implements Searchable{
         actors.add(newActor);
         return newActor;
     }
-    
-    //Function to add a Review object to the reviews list
-    //Input: Review object
-    //Output: Void
-    public void newReview (Review review) {
-        reviews.add(review);
-    }
-    
+
     //Function to change the DVD's lost status
     //Input: Boolean status
     //Output: Void
@@ -85,9 +92,7 @@ public class Movie implements Searchable{
     //Output: Boolean 
     @Override
     public boolean contains(String key){
-        if(Integer.toString(dvd.getSerialNo()).contains(key.trim()))
-            return true;
-        else if(name.trim().toUpperCase().contains(key.trim().toUpperCase()))
+        if(name.trim().toUpperCase().contains(key.trim().toUpperCase()))
             return true;
         else if(Integer.toString(year).contains(key.trim()))
             return true;
@@ -96,5 +101,10 @@ public class Movie implements Searchable{
         else 
             return false;
     }
+    
+    @Override
+    public String info() {
+        return "\nYear: " + Integer.toString(year) + "\nTitle: " + name + "\nRating: " + String.valueOf(rating);
+     }
     
 }
