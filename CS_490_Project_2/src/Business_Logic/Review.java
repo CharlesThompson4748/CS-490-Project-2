@@ -19,4 +19,15 @@ public class Review {
         this.rating = Rating;
         this.review = Review;
     }
+
+    //Class get fucntions
+    public int getRating() {
+        return rating;
+    }
+
+    public String getReview() {
+        return review;
+    }
+    
+    
 }

@@ -20,6 +20,7 @@ public class Movie implements Searchable{
     
     //Class list for actors in the movie
     private LinkedList<Actor> actors = new LinkedList<>();
+    private LinkedList<Review> reviews = new LinkedList<>();
     
     //Class constructor
     public Movie (double Rating, int Year, String Name) { 
@@ -46,6 +47,13 @@ public class Movie implements Searchable{
         return newActor;
     }
     
+    //Function to add a Review object to the reviews list
+    //Input: Review object
+    //Output: Void
+    public void newReview (Review review) {
+        reviews.add(review);
+    }
+    
     //Function to change the DVD's lost status
     //Input: Boolean status
     //Output: Void
@@ -58,6 +66,18 @@ public class Movie implements Searchable{
     //Output: DVD integer serial number
     public int getDVDSerialNo(){
         return dvd.getSerialNo();
+    }
+    
+    //Function to get anc calculate the Movie rating
+    //Input: Void
+    //Output: Movie rating 
+    public double getMovieRating() {
+        double r = rating;
+        for(Review review:reviews){
+            r += review.getRating();
+        }
+        rating = r/reviews.size();
+        return rating;
     }
     
     //Overriden interface function to find matches for searches of Movie objects

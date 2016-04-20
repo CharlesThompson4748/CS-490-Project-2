@@ -19,6 +19,7 @@ public class Controller {
     //Class lists
     private LinkedList<Customer> customers = new LinkedList<>();
     private LinkedList<Rental> rentals = new LinkedList<>();
+    private LinkedList<Request> requests = new LinkedList<>();
     private LinkedList<Movie> movies = new LinkedList<>();
     
     //Class Constructor
@@ -68,28 +69,27 @@ public class Controller {
     //Input: Search key, DVD serial number and lost status
     //Output: Void
     public void addDVD(String Key, int SerialNo, boolean Status){
-        //Search the movies list for strings that contain key 
-        for(Movie movie:movies) {
-            if(movie.contains(Key)) {
-                //Match found creating new DVD object
-                movie.addDVD(SerialNo, Status);
-                break;
-            }
-        }
+        Movie movie = searchMovies(Key);
+        movie.addDVD(SerialNo, Status);
     }
     
     //Function to add Actors to a movie
     //Input: Search key, Actor name and gender
     //Output: Void
     public void addActor(String Key, String Name, String Gender) {
-        //Search the movies list for strings that contain key 
-        for(Movie movie:movies) {
-            if(movie.contains(Key)) {
-                //Match found creating new Actor object
-                movie.addActor(Name, getGender(Gender));
-                break;
-            }
-        }
+        Movie movie = searchMovies(Key);
+        movie.addActor(Name, getGender(Gender));
+    }
+    
+    //Function to add Reviews for a movie
+    //Input: Movie name, Customer name, rating, and review
+    //Output: Void
+    public void addReview(String Movie, String Customer, int Rating, String Review) {
+        Customer customer = searchCustomers(Customer);
+        Movie movie = searchMovies(Movie);
+        Review review = new Review(Rating, Review);
+        customer.newReview(review);
+        movie.newReview(review);
     }
     
     //Function to convert a String to an Gender enum object
@@ -128,5 +128,35 @@ public class Controller {
             default:
                 return Status.AVAILABLE;
         }
+    }
+    
+    //Function to search through Movies list
+    //Input: String search key
+    //Output: Movie object
+    public Movie searchMovies (String Key) {
+        Movie m = null;
+        for(Movie movie:movies) {
+            if(movie.contains(Key)) {
+                //Match found creating new Actor object
+                m = movie;
+                break;
+            }
+        }
+        return m;
+    }
+    
+    //Function to search through Customers list
+    //Input: String search key
+    //Output: Customer object
+    public Customer searchCustomers (String Key) {
+        Customer c = null;
+        for(Customer customer:customers){
+            if(customer.contains(Key)) {
+                //Match found creating new Actor object
+                c = customer;
+                break;
+            }
+        }
+        return c;
     }
 }

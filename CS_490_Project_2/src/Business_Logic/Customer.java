@@ -5,17 +5,24 @@
  */
 package Business_Logic;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author charlie
  */
-public class Customer {
+public class Customer implements Searchable{
+    //Class variables
     private String email;
     private String name;
     private String address;
     private String phoneNum;
     private String password;
     
+    //Class lists
+    private LinkedList<Review> reviews = new LinkedList<>();
+    
+    //Class constructor
     public Customer (String Email, String Name, String Address, String PhoneNum, String Password) {
         this.email = Email;
         this.name = Name;
@@ -23,4 +30,29 @@ public class Customer {
         this.phoneNum = PhoneNum;
         this.password = Password;
     }
+    
+    //Function to add a Review object to the reviews list
+    //Input: Review object
+    //Output: Void
+    public void newReview(Review review){
+        reviews.add(review);
+    }
+    
+    //Overriden interface function to find matches for searches of Customer objects
+    //Input: String search key
+    //Output: Boolean 
+    @Override
+    public boolean contains(String key){
+        if(email.trim().toUpperCase().contains(key.trim().toUpperCase()))
+            return true;
+        else if(name.trim().toUpperCase().contains(key.trim().toUpperCase()))
+            return true;
+        else if(address.trim().toUpperCase().contains(key.trim().toUpperCase()))
+            return true;
+        else if(phoneNum.trim().toUpperCase().contains(key.trim().toUpperCase()))
+            return true;
+        else 
+            return false;
+    }
+    
 }

@@ -17,6 +17,13 @@ public class MovieRental {
         //Creating new controller object
         Controller controller = Controller.instance();
         
+        controller.addCustomer("Bender@gmail.com", "Bender Bending Rodriguez", "1800 King Dr.", "470-010-0100", "BenderIsGreat");
+        controller.addCustomer("DeliveryBoy@gmail.com", "Phillip J. Fry", "2999 Future Ln.", "001-231-2000", "Leila");
+        controller.addCustomer("ShellCity@gmail.com", "John A. Zoidberg", "200 DumbsterOutBack Rd.", "158-0245-9752", "Awww");
+        controller.addCustomer("CharlesThompson@gmail.com", "Charles Thompson", "1234 Road Dr.", "123-456-7890", "HaHaHaHa");
+        controller.addCustomer("KatrinaFlynn@gmail.com", "Katrina Flynn", "5678 Drive Rd.", "987-654-3210", "KatFlynn");
+        controller.addCustomer("BrandonBuckalew@gmail.com", "Brandon Buckalew", "5780 Main St.", "785-123-7802", "Brandon");
+        
         controller.addMovie(3.2, 2006, "That One Movie");
         controller.addMovie(1.2, 2010, "That Other Movie");
         controller.addMovie(4.0, 2013, "Ted");
