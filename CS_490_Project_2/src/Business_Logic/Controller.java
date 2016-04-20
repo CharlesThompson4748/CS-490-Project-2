@@ -49,8 +49,8 @@ public class Controller {
     //Function to add a new Rental
     //Input: The current date, the return date and the status of the movie
     //Output: Rental object
-    public Rental addRental (Calendar rentDate, Calendar returnDate, Status status){
-        Rental newRental = new Rental(rentDate, returnDate, status);
+    public Rental addRental (Calendar rentDate, Calendar returnDate, String Status){
+        Rental newRental = new Rental(rentDate, returnDate, getStatus(Status));
         rentals.add(newRental);
         return newRental;
     }
@@ -64,4 +64,69 @@ public class Controller {
         return newMovie;
     }
 
+    //Function to add a avaiable DVD for a Movie
+    //Input: Search key, DVD serial number and lost status
+    //Output: Void
+    public void addDVD(String Key, int SerialNo, boolean Status){
+        //Search the movies list for strings that contain key 
+        for(Movie movie:movies) {
+            if(movie.contains(Key)) {
+                //Match found creating new DVD object
+                movie.addDVD(SerialNo, Status);
+                break;
+            }
+        }
+    }
+    
+    //Function to add Actors to a movie
+    //Input: Search key, Actor name and gender
+    //Output: Void
+    public void addActor(String Key, String Name, String Gender) {
+        //Search the movies list for strings that contain key 
+        for(Movie movie:movies) {
+            if(movie.contains(Key)) {
+                //Match found creating new Actor object
+                movie.addActor(Name, getGender(Gender));
+                break;
+            }
+        }
+    }
+    
+    //Function to convert a String to an Gender enum object
+    //Input: String gender
+    //Ouput: Gender enum object
+    private Gender getGender(String gender) {
+        //Remove any whitespace and conver to upper case
+        String type = gender.trim().toUpperCase();
+        //Compare input to specific values
+        switch(type) {
+            case "MALE":
+                //Return the enum object
+                return Gender.MALE;
+            case "FEMALE":
+                return Gender.FEMALE;
+            //No match found. Default value to enum MALE
+            default:
+                return Gender.MALE;
+        }
+    }
+    
+    //Function to convert a String to an Status enum object
+    //Input: String status
+    //Ouput: Status enum object
+    private Status getStatus(String status) {
+        //Remove any whitespace and convert to upper case
+        String type = status.trim().toUpperCase();
+        //Compare input to specific values
+        switch(type) {
+            case "AVAILABLE":
+                //Return the enum object
+                return Status.AVAILABLE;
+            case "RENTED":
+                return Status.RENTED;
+            //No match found. Default value to enum AVAILABLE
+            default:
+                return Status.AVAILABLE;
+        }
+    }
 }
