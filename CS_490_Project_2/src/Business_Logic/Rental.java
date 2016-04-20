@@ -11,16 +11,14 @@ import java.util.Calendar;
  *
  * @author charlie
  */
-public class Request {
+public class Rental {
+    private Calendar rentalDate;
+    private Calendar returnDate;
     private Status status;
-    public Type type;
-    private Calendar requestDate;
-    private Calendar responseDate;
     
-    public Request (Calendar reqDate, Calendar resDate, Status status, Type type) {
-        this.requestDate = reqDate;
-        this.responseDate = resDate;
+    public Rental (Calendar RentDate, Calendar ReturnDate, Status status){
+        this.rentalDate = RentDate;
+        this.returnDate = ReturnDate;
         this.status = status;
-        this.type = type;
     }
 }
