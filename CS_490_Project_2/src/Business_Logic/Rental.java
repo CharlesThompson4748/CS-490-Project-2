@@ -20,6 +20,8 @@ public class Rental {
     private DVD dvd;
     private Review review;
     
+    private LinkedList<Review> reviews = new LinkedList<>();
+    
     //Class constructor
     public Rental (Calendar RentDate, Calendar ReturnDate, Status status){
         this.rentalDate = RentDate;
@@ -33,4 +35,17 @@ public class Rental {
     public void newReview(Review review){
         this.review = review;
     }
+    
+    //Function to get anc calculate the Movie rating
+    //Input: Void
+    //Output: Movie rating 
+    public double getMovieRating() {
+        double r = 0.0;
+        for(Review review:reviews){
+            r += review.getRating();
+        }
+        r= r/reviews.size();
+        return r;
+    }
+    
 }

@@ -75,18 +75,6 @@ public class Movie implements Searchable{
         return dvd.getSerialNo();
     }
     
-    //Function to get anc calculate the Movie rating
-    //Input: Void
-    //Output: Movie rating 
-    public double getMovieRating() {
-        double r = rating;
-        for(Review review:reviews){
-            r += review.getRating();
-        }
-        rating = r/reviews.size();
-        return rating;
-    }
-    
     //Overriden interface function to find matches for searches of Movie objects
     //Input: String search key
     //Output: Boolean 

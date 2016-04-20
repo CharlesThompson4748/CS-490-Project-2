@@ -19,7 +19,7 @@ public class DVD {
         this.serialNo = SN;
         this.lost = Lost;
     }
-
+    
     //Class Getters
     public int getSerialNo() {
         return serialNo;

@@ -5,6 +5,8 @@
  */
 package Business_Logic;
 
+import java.util.Calendar;
+
 /**
  *
  * @author charlie
@@ -16,11 +18,16 @@ public class Payment {
     //Class variables
     private int amount;
     private Method paymentMethod;
+    private Calendar paymentDate;
     
     //Class constructor
-    public Payment (int amount, Method payMethod){
+    public Payment (int amount, Method payMethod, Calendar date){
         this.amount = amount;
         this.paymentMethod = payMethod;
+        this.paymentDate = date;
     }
     
+    public boolean processPayment (int amount, Method type) {
+        return true;
+    }   
 }
