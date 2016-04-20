@@ -9,12 +9,18 @@ package Business_Logic;
  *
  * @author charlie
  */
-public class Keyword {
+public class Payment {
+    //Payment method enum
+    public enum Method {CASH, CREADIT};
+    
     //Class variables
-    private String name;
+    private int amount;
+    private Method paymentMethod;
     
     //Class constructor
-    public Keyword (String Name) {
-        this.name = Name;
+    public Payment (int amount, Method payMethod){
+        this.amount = amount;
+        this.paymentMethod = payMethod;
     }
+    
 }

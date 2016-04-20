@@ -10,9 +10,11 @@ package Business_Logic;
  * @author charlie
  */
 public class Review {
+    //Class variables
     private int rating;
     private String review;
     
+    //Class constructor
     public Review (int Rating, String Review) {
         this.rating = Rating;
         this.review = Review;

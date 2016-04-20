@@ -10,10 +10,11 @@ package Business_Logic;
  * @author charlie
  */
 public class Actor {
-    public enum Gender {MALE, FEMALE};
+    //Class variables
     private String name;
     private Gender gender;
     
+    //Class constructor
     public Actor (String Name, Gender gend) {
         this.name = Name;
         this.gender = gend;

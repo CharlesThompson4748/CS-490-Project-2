@@ -9,12 +9,7 @@ package Business_Logic;
  *
  * @author charlie
  */
-public class Keyword {
-    //Class variables
-    private String name;
-    
-    //Class constructor
-    public Keyword (String Name) {
-        this.name = Name;
-    }
+public interface Searchable {
+    //Interface functions
+    public boolean contains(String key);
 }

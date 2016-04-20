@@ -12,10 +12,12 @@ import java.util.Calendar;
  * @author charlie
  */
 public class Rental {
+    //Class variables
     private Calendar rentalDate;
     private Calendar returnDate;
     private Status status;
     
+    //Class constructor
     public Rental (Calendar RentDate, Calendar ReturnDate, Status status){
         this.rentalDate = RentDate;
         this.returnDate = ReturnDate;

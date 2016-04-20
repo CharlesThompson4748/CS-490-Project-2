@@ -12,11 +12,13 @@ import java.util.Calendar;
  * @author charlie
  */
 public class Request {
+    //Class variables
     private Status status;
     public Type type;
     private Calendar requestDate;
     private Calendar responseDate;
     
+    //Class constructor
     public Request (Calendar reqDate, Calendar resDate, Status status, Type type) {
         this.requestDate = reqDate;
         this.responseDate = resDate;
