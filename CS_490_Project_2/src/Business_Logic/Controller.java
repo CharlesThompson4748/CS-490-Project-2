@@ -84,7 +84,7 @@ public class Controller {
     //Function to add Reviews for a movie
     //Input: Movie name, Customer name, rating, and review
     //Output: Void
-    public void addReview(String Movie, String Customer, int Rating, String Review) {
+    public void addReview(String Movie, String Customer, double Rating, String Review) {
         Customer customer = searchCustomers(Customer);
         Movie movie = searchMovies(Movie);
         Review review = new Review(Rating, Review);

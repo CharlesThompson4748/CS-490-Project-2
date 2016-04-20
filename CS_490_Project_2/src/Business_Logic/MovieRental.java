@@ -17,6 +17,7 @@ public class MovieRental {
         //Creating new controller object
         Controller controller = Controller.instance();
         
+        //Adding Customers
         controller.addCustomer("Bender@gmail.com", "Bender Bending Rodriguez", "1800 King Dr.", "470-010-0100", "BenderIsGreat");
         controller.addCustomer("DeliveryBoy@gmail.com", "Phillip J. Fry", "2999 Future Ln.", "001-231-2000", "Leila");
         controller.addCustomer("ShellCity@gmail.com", "John A. Zoidberg", "200 DumbsterOutBack Rd.", "158-0245-9752", "Awww");
@@ -24,6 +25,7 @@ public class MovieRental {
         controller.addCustomer("KatrinaFlynn@gmail.com", "Katrina Flynn", "5678 Drive Rd.", "987-654-3210", "KatFlynn");
         controller.addCustomer("BrandonBuckalew@gmail.com", "Brandon Buckalew", "5780 Main St.", "785-123-7802", "Brandon");
         
+        //Adding Movies
         controller.addMovie(3.2, 2006, "That One Movie");
         controller.addMovie(1.2, 2010, "That Other Movie");
         controller.addMovie(4.0, 2013, "Ted");
@@ -34,6 +36,7 @@ public class MovieRental {
         controller.addMovie(4.1, 1984, "LOL 1984");
         controller.addMovie(1.8, 2015, "Star Wars: The Force Awakens");
         
+        //Adding DVDs
         controller.addDVD("Ted", 5654684, false);
         controller.addDVD("Ted", 6846841, true);
         controller.addDVD("Forest Gump", 3126845, false);
@@ -46,6 +49,7 @@ public class MovieRental {
         controller.addDVD("Another One", 7884545, false);
         controller.addDVD("3.6", 7798451, false);
         
+        //Adding Actors
         controller.addActor("Ted", "Mark Wallberg", "MALE");
         controller.addActor("Ted", "Mila Kunis", "FEMALE");
         controller.addActor("Forest Gump", "Tom Hanks", "MALE");
@@ -58,11 +62,18 @@ public class MovieRental {
         controller.addActor("Another One", "Another Women", "FEMALE");
         controller.addActor("3.6", "Mr. T", "MALE");
         
+        //Adding Rentals
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "RENTED");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "RENTED");
+        
+        //Adding Reviews
+        controller.addReview("Ted", "Bender", 4.8, "A bear that came to life and is a terrible influence on the main character, what isnt there to like.");
+        controller.addReview("That One Movie", "Charlie", 1.2, "Almost as bad as That Other Movie.");
+        controller.addReview("Some Movie Nobody Has Herd Of", "Fry", 2.1, "So bad I forgot what it was even called.");
+        controller.addReview("1999 I Don't Know Something Awefull", "Zoidberg", 8.2, "Surprisingly good.");
         
     }
 }
