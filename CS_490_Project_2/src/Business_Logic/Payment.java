@@ -6,6 +6,7 @@
 package Business_Logic;
 
 import java.util.Calendar;
+import java.util.Random;
 
 /**
  *
@@ -28,6 +29,22 @@ public class Payment {
     }
     
     public boolean processPayment (int amount, Method type) {
-        return true;
+        if(type == Method.CASH){
+            System.out.println("Payment Processed");
+            return true;
+        }
+        else if(type == Method.CREADIT){
+            Random random = new Random();
+            int i = random.nextInt(1);
+            if(i == 0){
+                System.out.println("Payment Processed");
+                return true;
+            }
+            else {
+                System.out.println("Payment Declined");
+                return false;
+            }
+        }
+        return false;
     }   
 }

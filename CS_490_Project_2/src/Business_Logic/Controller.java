@@ -47,13 +47,16 @@ public class Controller {
         System.out.println("Movies\n");
         for(Movie movie:movies){
             System.out.println(movie.info() + "\nDVDs");
-            movie.prindDVDs();
+            movie.printDVDs();
             System.out.println("\nActors");
             movie.printActors();
         }
-        
-        
+        System.out.println("Rentals\n");
+        for(Rental rental:rentals){
+            System.out.println(rental.info());
+        } 
     }
+    
     //Function to add a new Customer
     //Input: Customer email, name, address, phone number, and password
     //Output: Customer object
@@ -66,10 +69,18 @@ public class Controller {
     //Function to add a new Rental
     //Input: The current date, the return date and the status of the movie
     //Output: Rental object
-    public Rental addRental (Calendar rentDate, Calendar returnDate, String Status){
-        Rental newRental = new Rental(rentDate, returnDate, getStatus(Status));
-        rentals.add(newRental);
-        return newRental;
+    public void addRental (Calendar rentDate, Calendar returnDate, String Status, String customerName, String movieName){
+        Customer customer = searchCustomers(customerName);
+        Movie movie = searchMovies(movieName);
+        DVD dvd = movie.getDVD();
+        if(Status == "AVAILABLE") {
+            Rental newRental = new Rental(rentDate, returnDate, getStatus(Status), customer, dvd);
+            rentals.add(newRental);
+        }
+        else {
+            Request newRequest = new Request(rentDate, returnDate, getStatus(Status), customer, movie);
+            requests.add(newRequest);
+        }
     }
     
     //Function to add a new Movie
@@ -173,4 +184,6 @@ public class Controller {
         }
         return c;
     }
+    
+    
 }

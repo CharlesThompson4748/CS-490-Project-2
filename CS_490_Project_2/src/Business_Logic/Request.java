@@ -17,12 +17,15 @@ public class Request {
     public Type type;
     private Calendar requestDate;
     private Calendar responseDate;
+    private Customer customer;
+    private Movie movie;
     
     //Class constructor
-    public Request (Calendar reqDate, Calendar resDate, Status status, Type type) {
+    public Request (Calendar reqDate, Calendar resDate, Status status, Customer customer, Movie movie) {
         this.requestDate = reqDate;
         this.responseDate = resDate;
         this.status = status;
-        this.type = type;
+        this.customer = customer;
+        this.movie = movie;
     }
 }

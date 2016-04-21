@@ -19,14 +19,15 @@ public class Rental {
     private Status status;
     private DVD dvd;
     private Review review;
-    
-    private LinkedList<Review> reviews = new LinkedList<>();
+    private Customer customer;
     
     //Class constructor
-    public Rental (Calendar RentDate, Calendar ReturnDate, Status status){
+    public Rental (Calendar RentDate, Calendar ReturnDate, Status status, Customer customer, DVD dvd){
         this.rentalDate = RentDate;
         this.returnDate = ReturnDate;
         this.status = status;
+        this.customer = customer;
+        this.dvd = dvd;
     }
     
     //Function to add a Review object to the reviews list
@@ -36,16 +37,9 @@ public class Rental {
         this.review = review;
     }
     
-    //Function to get anc calculate the Movie rating
-    //Input: Void
-    //Output: Movie rating 
-    public double getMovieRating() {
-        double r = 0.0;
-        for(Review review:reviews){
-            r += review.getRating();
-        }
-        r= r/reviews.size();
-        return r;
+    //Function for testing
+    public String info(){
+        return "Rental Date: " + this.rentalDate.toString() + "\nReturn Date: " + this.returnDate.toString() + "\nStatus: " + this.status;
     }
     
 }

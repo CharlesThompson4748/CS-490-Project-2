@@ -48,6 +48,7 @@ public class Customer implements Searchable{
             return false;
     }
     
+    //For testing
     @Override
     public String info() {
         return "\nEmail: " + email + "\nName: " + name + "\nAddress: " + address + "\nPhone Number: " + phoneNum + 

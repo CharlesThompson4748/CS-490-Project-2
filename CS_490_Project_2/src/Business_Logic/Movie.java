@@ -38,7 +38,7 @@ public class Movie implements Searchable{
     }
     
     //Function for testing
-    public void prindDVDs(){
+    public void printDVDs(){
         for(DVD dvd:dvds){
             System.out.println(dvd.info());
         }
@@ -75,6 +75,28 @@ public class Movie implements Searchable{
         return dvd.getSerialNo();
     }
     
+    //Function to get anc calculate the Movie rating
+    //Input: Void
+    //Output: Movie rating 
+    public double getMovieRating() {
+        double r = 0.0;
+        for(Review review:reviews){
+            r += review.getRating();
+        }
+        r= r/reviews.size();
+        return r;
+    }
+    
+    public DVD getDVD (){
+        DVD d = null;
+        for(DVD dvd:dvds){
+            if(dvd.isLost() != false){
+                d = dvd;
+                break;
+            }
+        }
+        return d;
+    }
     //Overriden interface function to find matches for searches of Movie objects
     //Input: String search key
     //Output: Boolean 
@@ -90,6 +112,7 @@ public class Movie implements Searchable{
             return false;
     }
     
+    //For testing
     @Override
     public String info() {
         return "\nYear: " + Integer.toString(year) + "\nTitle: " + name + "\nRating: " + String.valueOf(rating);

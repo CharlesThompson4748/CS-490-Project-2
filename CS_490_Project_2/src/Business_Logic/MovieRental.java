@@ -62,14 +62,14 @@ public class MovieRental {
         controller.addActor("Another One", "Another Women", "FEMALE");
         controller.addActor("3.6", "Mr. T", "MALE");
         
-        controller.printLists();
-        
         //Adding Rentals
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "RENTED");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "RENTED");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "RENTED", "Bender Bending Rodriguez", "Ted");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Charles Thompson", "That One Movie");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Brandon Buckalew", "Another One");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Phillip J. Fry", "Forest Gump");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "RENTED", "Katrina Flynn", "That Other Movie");
+        
+        controller.printLists();
         
         //Adding Reviews
         controller.addReview("Ted", "Bender Bending Rodriguez", 4.8, "A bear that came to life and is a terrible influence on the main character, what isnt there to like.");
