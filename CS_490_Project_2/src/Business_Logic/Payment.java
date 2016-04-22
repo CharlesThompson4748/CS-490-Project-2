@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class Payment {
     //Payment method enum
-    public enum Method {CASH, CREADIT};
+    public enum Method {CASH, CREDIT};
     
     //Class variables
     private int amount;
@@ -33,7 +33,7 @@ public class Payment {
             System.out.println("Payment Processed");
             return true;
         }
-        else if(type == Method.CREADIT){
+        else if(type == Method.CREDIT){
             Random random = new Random();
             int i = random.nextInt(1);
             if(i == 0){
