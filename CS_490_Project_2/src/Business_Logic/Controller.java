@@ -73,7 +73,7 @@ public class Controller {
         Customer customer = searchCustomers(customerName);
         Movie movie = searchMovies(movieName);
         DVD dvd = movie.getDVD();
-        if(Status == "AVAILABLE") {
+        if(Status.equals("AVAILABLE")) {
             Rental newRental = new Rental(rentDate, returnDate, getStatus(Status), customer, dvd);
             rentals.add(newRental);
         }
