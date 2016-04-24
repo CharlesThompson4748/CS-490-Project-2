@@ -17,6 +17,8 @@ public class Movie implements Searchable{
     private int year;
     private String name;
     private DVD dvd;
+    private Keyword keyword;
+    private Type type;
     
     //Class list for actors in the movie
     private LinkedList<Actor> actors = new LinkedList<>();
@@ -24,10 +26,12 @@ public class Movie implements Searchable{
     private LinkedList<DVD> dvds = new LinkedList<>();
     
     //Class constructor
-    public Movie (double Rating, int Year, String Name) { 
+    public Movie (double Rating, int Year, String Name, Keyword keyword, Type type) { 
         this.rating = Rating;
         this.year = Year;
         this.name = Name;   
+        this.keyword = keyword;
+        this.type = type;
     }
     
     //Function for testing
@@ -87,10 +91,11 @@ public class Movie implements Searchable{
         return r;
     }
     
+    //Fuction to find list of DVDs
     public DVD getDVD (){
         DVD d = null;
         for(DVD dvd:dvds){
-            if(dvd.isLost() != false){
+            if(dvd.isLost() == false){
                 d = dvd;
                 break;
             }
@@ -115,7 +120,7 @@ public class Movie implements Searchable{
     //For testing
     @Override
     public String info() {
-        return "\nYear: " + Integer.toString(year) + "\nTitle: " + name + "\nRating: " + String.valueOf(rating);
+        return "\nYear: " + Integer.toString(year) + "\nTitle: " + name + "\nRating: " + String.valueOf(rating) + "\nKeyword: " + keyword.getKeyword();
      }
     
 }

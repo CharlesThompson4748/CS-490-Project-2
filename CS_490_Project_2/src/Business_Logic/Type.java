@@ -10,5 +10,5 @@ package Business_Logic;
  * @author charlie
  */
 public enum Type {
-    
+    G, PG, PG13, R
 }

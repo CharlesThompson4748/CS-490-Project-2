@@ -5,6 +5,7 @@
  */
 package Business_Logic;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
@@ -26,15 +27,15 @@ public class MovieRental {
         controller.addCustomer("BrandonBuckalew@gmail.com", "Brandon Buckalew", "5780 Main St.", "785-123-7802", "Brandon");
         
         //Adding Movies
-        controller.addMovie(3.2, 2006, "That One Movie");
-        controller.addMovie(1.2, 2010, "That Other Movie");
-        controller.addMovie(4.0, 2013, "Ted");
-        controller.addMovie(5.0, 2001, "Forest Gump");
-        controller.addMovie(4.2, 2008, "Some Movie Nobody Has Heard Of");
-        controller.addMovie(2.3, 2003, "Another One");
-        controller.addMovie(3.6, 1999, "1999 I Don't Know Something Awefull");
-        controller.addMovie(4.1, 1984, "LOL 1984");
-        controller.addMovie(1.8, 2015, "Star Wars: The Force Awakens");
+        controller.addMovie(3.2, 2006, "That One Movie", "Comedy", "PG");
+        controller.addMovie(1.2, 2010, "That Other Movie", "Thriller", "PG13");
+        controller.addMovie(4.0, 2013, "Ted", "Comedy", "R");
+        controller.addMovie(5.0, 2001, "Forest Gump", "Drama", "PG13");
+        controller.addMovie(4.2, 2008, "Some Movie Nobody Has Heard Of", "Drama","G");
+        controller.addMovie(2.3, 2003, "Another One", "Comedy","G");
+        controller.addMovie(3.6, 1999, "1999 I Don't Know Something Awefull", "Drama","R");
+        controller.addMovie(4.1, 1984, "LOL 1984", "Comedy","PG13");
+        controller.addMovie(1.8, 2015, "Star Wars: The Force Awakens", "Action","PG13");
         
         //Adding DVDs
         controller.addDVD("Ted", 5654684, false);
@@ -43,7 +44,7 @@ public class MovieRental {
         controller.addDVD("Forest Gump", 9561155, false);
         controller.addDVD("That One Movie", 1234567, false);
         controller.addDVD("That Other Movie", 2486842, false);
-        controller.addDVD("1984", 0000001, false);
+        controller.addDVD("1984", 1000001, false);
         controller.addDVD("1.8", 2225554, false);
         controller.addDVD("2008", 5475685, true);
         controller.addDVD("Another One", 7884545, false);
@@ -63,11 +64,19 @@ public class MovieRental {
         controller.addActor("3.6", "Mr. T", "MALE");
         
         //Adding Rentals
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "RENTED", "Bender Bending Rodriguez", "Ted");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Bender Bending Rodriguez", "Ted");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Charles Thompson", "That One Movie");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Brandon Buckalew", "Another One");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Phillip J. Fry", "Forest Gump");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "RENTED", "Katrina Flynn", "That Other Movie");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Katrina Flynn", "That Other Movie");
+        
+        controller.printLists();
+        
+        //Returning Rentals
+        controller.returnRental("Bender Bending Rodriguez");
+        controller.returnRental("Charles Thompson");
+        controller.returnRental("Phillip J. Fry");
+        controller.returnRental("Brandon Buckalew");
         
         controller.printLists();
         
@@ -75,7 +84,7 @@ public class MovieRental {
         controller.addReview("Ted", "Bender Bending Rodriguez", 4.8, "A bear that came to life and is a terrible influence on the main character, what isnt there to like.");
         controller.addReview("That One Movie", "Charles Thompson", 1.2, "Almost as bad as That Other Movie.");
         controller.addReview("Some Movie Nobody Has Herd Of", "Phillip J. Fry", 2.1, "So bad I forgot what it was even called.");
-        controller.addReview("1999 I Don't Know Something Awefull", "John A. Zoidberg", 8.2, "Surprisingly good.");
+        controller.addReview("1999 I Don't Know Something Awefull", "Brandon Buckalew", 8.2, "Surprisingly good.");
         
     }
 }

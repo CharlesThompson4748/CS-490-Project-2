@@ -14,7 +14,6 @@ import java.util.Calendar;
 public class Request {
     //Class variables
     private Status status;
-    public Type type;
     private Calendar requestDate;
     private Calendar responseDate;
     private Customer customer;
@@ -27,5 +26,10 @@ public class Request {
         this.status = status;
         this.customer = customer;
         this.movie = movie;
+    }
+    
+    //Class setters
+    private void setStatus(Status status){
+        this.status = status;
     }
 }

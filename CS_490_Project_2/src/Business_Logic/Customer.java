@@ -30,6 +30,11 @@ public class Customer implements Searchable{
         this.phoneNum = PhoneNum;
         this.password = Password;
     }
+
+    //Class getters
+    public String getName() {
+        return name;
+    }
     
     //Overriden interface function to find matches for searches of Customer objects
     //Input: String search key

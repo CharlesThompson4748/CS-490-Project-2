@@ -39,8 +39,9 @@ public class Controller {
     }
     
     //Function for testing
+    //Print out of Customers, Movies, and Rentals
     public void printLists(){
-        System.out.println("Customers\n");
+        /*System.out.println("Customers\n");
         for(Customer customer:customers){
             System.out.println(customer.info());
         }
@@ -50,8 +51,9 @@ public class Controller {
             movie.printDVDs();
             System.out.println("\nActors");
             movie.printActors();
-        }
-        System.out.println("Rentals\n");
+        }*/
+        
+        System.out.println("Rentals\n" + rentals.size());
         for(Rental rental:rentals){
             System.out.println(rental.info());
         } 
@@ -68,26 +70,36 @@ public class Controller {
     
     //Function to add a new Rental
     //Input: The current date, the return date and the status of the movie
-    //Output: Rental object
-    public void addRental (Calendar rentDate, Calendar returnDate, String Status, String customerName, String movieName){
+    //Output: Void
+    public void addRental (Calendar rentDate, Calendar returnDate, String sStatus, String customerName, String movieName){
         Customer customer = searchCustomers(customerName);
         Movie movie = searchMovies(movieName);
         DVD dvd = movie.getDVD();
-        if(Status.equals("AVAILABLE")) {
-            Rental newRental = new Rental(rentDate, returnDate, getStatus(Status), customer, dvd);
+        if(sStatus.equals("AVAILABLE")) {
+            Rental newRental = new Rental(rentDate, returnDate, Status.RENTED, customer, dvd);
             rentals.add(newRental);
         }
         else {
-            Request newRequest = new Request(rentDate, returnDate, getStatus(Status), customer, movie);
+            Request newRequest = new Request(rentDate, returnDate, getStatus(sStatus), customer, movie);
             requests.add(newRequest);
         }
+    }
+    
+    //Function to return Rental
+    //Input: Customer Name
+    //Output: Void
+    public void returnRental(String customerName){
+        Rental rental = searchRentals(customerName);
+        //Changing rental status from RENTED to AVAILABLE
+        rental.setStatus(Status.AVAILABLE);
     }
     
     //Function to add a new Movie
     //Input: The movie rating, year made, and name
     //Ouput: Movie object
-    public Movie addMovie (double Rating, int Year, String Name) {
-        Movie newMovie = new Movie(Rating, Year, Name);
+    public Movie addMovie (double Rating, int Year, String Name, String keyword, String type) {
+        Keyword newKeyword = new Keyword(keyword);
+        Movie newMovie = new Movie(Rating, Year, Name, newKeyword, getType(type));
         movies.add(newMovie);
         return newMovie;
     }
@@ -136,6 +148,27 @@ public class Controller {
         }
     }
     
+    //Funtion to convert a String to a Type enum object
+    //Input: String type
+    //Output: Type enum object
+    private Type getType(String type) {
+        //Remove any whitespace and conver to upper case
+        String stringType = type.trim().toUpperCase();
+        //Compare input to specific values
+        switch(stringType) {
+            case "G":
+                return Type.G;
+            case "PG":
+                return Type.PG;
+            case "PG13":
+                return Type.PG13;
+            case "R":
+                return Type.R;
+            default:
+                return Type.PG;
+        }
+    }
+    
     //Function to convert a String to an Status enum object
     //Input: String status
     //Ouput: Status enum object
@@ -170,6 +203,20 @@ public class Controller {
         return m;
     }
     
+    //Function to search through Rentals list
+    //Input: String search key
+    //Output: Rental object
+    public Rental searchRentals (String Key){
+        Rental r = null;
+        for(Rental rental:rentals){
+            if(rental.contains(Key)){
+                r = rental;
+                break;
+            }
+        }
+        return r;
+    }
+    
     //Function to search through Customers list
     //Input: String search key
     //Output: Customer object
@@ -183,7 +230,5 @@ public class Controller {
             }
         }
         return c;
-    }
-    
-    
+    }   
 }

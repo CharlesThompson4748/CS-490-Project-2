@@ -17,4 +17,9 @@ public class Keyword {
     public Keyword (String Name) {
         this.name = Name;
     }
+    
+    //Class getters
+    public String getKeyword() {
+        return name;
+    }
 }
