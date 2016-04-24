@@ -89,10 +89,10 @@ public class MovieRental {
         controller.changeKeyword("LOL 1984", "");
         
         //Returning Rentals
-        controller.returnRental("Bender Bending Rodriguez");
-        controller.returnRental("Charles Thompson");
-        controller.returnRental("Phillip J. Fry");
-        controller.returnRental("Brandon Buckalew");
+        controller.returnRental("Bender Bending Rodriguez", 5654684);
+        controller.returnRental("Charles Thompson", 1234567);
+        controller.returnRental("Phillip J. Fry", 3126845);
+        controller.returnRental("Brandon Buckalew", 7884545);
         
         //Print list after things were removed
         controller.printLists();

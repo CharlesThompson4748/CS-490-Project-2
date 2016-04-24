@@ -116,12 +116,18 @@ public class Controller {
     }
     
     //Function to return Rental
-    //Input: Customer Name
+    //Input: Customer Name and DVD id
     //Output: Void
-    public void returnRental(String customerName){
-        Rental rental = searchRentals(customerName);
+    public void returnRental(String customerName, int DVDid){
+        Rental rental = searchRentals(customerName, DVDid);
         //Changing rental status from RENTED to AVAILABLE
         rental.setStatus(Status.AVAILABLE);
+        for (Iterator<Rental> iter = rentals.listIterator(); iter.hasNext(); ) {
+            Rental r = iter.next();
+            if (r.contains(customerName) && r.contains(Integer.toString(DVDid))) {
+                iter.remove();
+            }
+        }
     }
     
     //Function to add a new Movie
@@ -259,12 +265,12 @@ public class Controller {
     }
     
     //Function to search through Rentals list
-    //Input: String search key
+    //Input: Customer Name and DVD id
     //Output: Rental object
-    public Rental searchRentals (String Key){
+    public Rental searchRentals (String customerName, int DVDid ){
         Rental r = null;
         for(Rental rental:rentals){
-            if(rental.contains(Key)){
+            if(rental.contains(customerName) && rental.contains(Integer.toString(DVDid))){
                 r = rental;
                 break;
             }

@@ -55,6 +55,9 @@ public class Rental implements Searchable{
         return date;
     }
     
+    public Status getStatus() {
+        return status;
+    }
 
     
     //Function to add a Review object to the reviews list
@@ -64,7 +67,7 @@ public class Rental implements Searchable{
         this.review = review;
     }
     
-    //Function for testing
+    //Functions for testing
     @Override
     public String info(){
         return "Rental Date: " + this.getRentalDate() + "\nReturn Date: " + this.getReturnDate() + "\nStatus: " + this.status;
@@ -73,6 +76,8 @@ public class Rental implements Searchable{
     @Override
     public boolean contains(String key){
         if(customer.getName().trim().toUpperCase().contains(key.trim().toUpperCase()))
+            return true;
+        else if(Integer.toString(dvd.getSerialNo()).contains(key.trim().toUpperCase()))
             return true;
         else 
             return false;
