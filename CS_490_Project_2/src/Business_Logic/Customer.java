@@ -36,6 +36,10 @@ public class Customer implements Searchable{
         return name;
     }
     
+    public String getEmail() {
+        return email;
+    }
+    
     //Overriden interface function to find matches for searches of Customer objects
     //Input: String search key
     //Output: Boolean 

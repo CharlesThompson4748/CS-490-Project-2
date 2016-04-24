@@ -5,6 +5,7 @@
  */
 package Business_Logic;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -55,6 +56,38 @@ public class Movie implements Searchable{
         dvds.add(newDVD);
         return newDVD;
     }
+
+    //Function to iterate through dvds and remove dvd
+    //Input: Serial Number
+    //Output: void
+    public void removeDVD(int SN){
+        for (Iterator<DVD> iter = dvds.listIterator(); iter.hasNext(); ) {
+            DVD d = iter.next();
+            if (d.getSerialNo() == SN) {
+                iter.remove();
+            }
+        }
+    }
+    
+    //Function to iterate through actors and remove actor
+    //Input: Name
+    //Output: void
+    public void removeActor(String name){
+        for (Iterator<Actor> iter = actors.listIterator(); iter.hasNext(); ) {
+            Actor a = iter.next();
+            if (a.getName().equals(name) ) {
+                iter.remove();
+            }
+        }
+    }
+    
+    //Function to set the keyword
+    //Input: keyword
+    //Output: void
+    public void changeKeyword(String keyword){
+        this.keyword.setKeyword(keyword);
+    }
+    
     
     //Function to add a new actor and and put it in the actors list
     //Input: Actor name and gender
@@ -91,6 +124,12 @@ public class Movie implements Searchable{
         return r;
     }
     
+    //Class getters
+    public String getName() {
+        return name;
+    }
+    
+    
     //Fuction to find list of DVDs
     public DVD getDVD (){
         DVD d = null;
@@ -102,6 +141,7 @@ public class Movie implements Searchable{
         }
         return d;
     }
+    
     //Overriden interface function to find matches for searches of Movie objects
     //Input: String search key
     //Output: Boolean 
@@ -113,7 +153,7 @@ public class Movie implements Searchable{
             return true;
         else if(String.valueOf(rating).contains(key.trim()))
             return true;
-        else 
+        else
             return false;
     }
     

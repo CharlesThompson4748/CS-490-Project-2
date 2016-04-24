@@ -6,6 +6,7 @@
 package Business_Logic;
 
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -38,22 +39,51 @@ public class Controller {
         return Singleton;
     }
     
+    //Function to iterate through customers and remove customer
+    //Input: Email
+    //Output: void
+    public void removeCustomer(String email){
+        for (Iterator<Customer> iter = customers.listIterator(); iter.hasNext(); ) {
+            Customer c = iter.next();
+            if (c.getEmail().contains(email)) {
+                iter.remove();
+            }
+        }
+    }
+    
+    //Function to iterate through movies and remove movie
+    //Input: Movie name
+    //Output: void
+    public void removeMovie(String movieName){
+        for (Iterator<Movie> iter = movies.listIterator(); iter.hasNext(); ) {
+            Movie m = iter.next();
+            if (m.getName().contains(movieName)) {
+                iter.remove();
+            }
+        }
+    }
+    
     //Function for testing
     //Print out of Customers, Movies, and Rentals
     public void printLists(){
-        /*System.out.println("Customers\n");
+        System.out.println("-------------------------");
+        System.out.println("Customers: " + customers.size());
+        System.out.println("-------------------------");
         for(Customer customer:customers){
             System.out.println(customer.info());
         }
-        System.out.println("Movies\n");
+        System.out.println("-------------------------");
+        System.out.println("Movies: " + movies.size());
+        System.out.println("-------------------------");
         for(Movie movie:movies){
             System.out.println(movie.info() + "\nDVDs");
             movie.printDVDs();
             System.out.println("\nActors");
             movie.printActors();
-        }*/
-        
-        System.out.println("Rentals\n" + rentals.size());
+        }
+        System.out.println("-------------------------");
+        System.out.println("Rentals: " + rentals.size());
+        System.out.println("-------------------------");
         for(Rental rental:rentals){
             System.out.println(rental.info());
         } 
@@ -119,6 +149,31 @@ public class Controller {
         Movie movie = searchMovies(Key);
         movie.addActor(Name, getGender(Gender));
     }
+    
+    //Function to remove actors from a movie
+    //Input: Actor and Movie Title
+    //Output: void
+    public void removeActor(String actor, String movieTitle){
+        Movie movie = searchMovies(movieTitle);
+        movie.removeActor(actor);
+    }
+    
+    //Function to remove DVD from a movie
+    //Input: Movie title and DVD id
+    //Output: void
+    public void removeDVD(String movieTitle, int DVDid){
+        Movie movie = searchMovies(movieTitle);
+        movie.removeDVD(DVDid);
+    }
+    
+    //Function to change keyword in a movie
+    //Input: Movie title and keyword
+    //Output: void
+    public void changeKeyword(String movieTitle, String keyword){
+        Movie movie = searchMovies(movieTitle);
+        movie.changeKeyword(keyword);
+    }
+    
     
     //Function to add Reviews for a movie
     //Input: Movie name, Customer name, rating, and review

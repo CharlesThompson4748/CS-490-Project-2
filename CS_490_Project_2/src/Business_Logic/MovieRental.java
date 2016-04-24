@@ -70,7 +70,23 @@ public class MovieRental {
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Phillip J. Fry", "Forest Gump");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Katrina Flynn", "That Other Movie");
         
+        //Initial Print List
         controller.printLists();
+        
+        //Remove Actor
+        controller.removeActor("Mark Wallberg", "Ted");
+        
+        //Remove DVD
+        controller.removeDVD("Ted", 6846841);
+        
+        //Remove Customer
+        controller.removeCustomer("BrandonBuckalew@gmail.com");
+        
+        //Remove Movie
+        controller.removeMovie("Star Wars: The Force Awakens");
+        
+        //Change Keyword - add, remove or change keyword
+        controller.changeKeyword("LOL 1984", "");
         
         //Returning Rentals
         controller.returnRental("Bender Bending Rodriguez");
@@ -78,6 +94,7 @@ public class MovieRental {
         controller.returnRental("Phillip J. Fry");
         controller.returnRental("Brandon Buckalew");
         
+        //Print list after things were removed
         controller.printLists();
         
         //Adding Reviews
@@ -85,6 +102,5 @@ public class MovieRental {
         controller.addReview("That One Movie", "Charles Thompson", 1.2, "Almost as bad as That Other Movie.");
         controller.addReview("Some Movie Nobody Has Herd Of", "Phillip J. Fry", 2.1, "So bad I forgot what it was even called.");
         controller.addReview("1999 I Don't Know Something Awefull", "Brandon Buckalew", 8.2, "Surprisingly good.");
-        
     }
 }

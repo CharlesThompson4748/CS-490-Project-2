@@ -17,6 +17,10 @@ public class Keyword {
     public Keyword (String Name) {
         this.name = Name;
     }
+    //Class setters
+    public void setKeyword(String name) {
+        this.name = name;
+    }
     
     //Class getters
     public String getKeyword() {

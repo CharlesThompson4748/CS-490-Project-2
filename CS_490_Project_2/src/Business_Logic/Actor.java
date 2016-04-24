@@ -9,7 +9,7 @@ package Business_Logic;
  *
  * @author charlie
  */
-public class Actor {
+public class Actor{
     //Class variables
     private String name;
     private Gender gender;
@@ -18,6 +18,11 @@ public class Actor {
     public Actor (String Name, Gender gend) {
         this.name = Name;
         this.gender = gend;
+    }
+    
+    //Class getters
+    public String getName() {
+        return name;
     }
     
     public String info(){
