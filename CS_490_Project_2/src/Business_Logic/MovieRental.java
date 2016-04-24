@@ -85,7 +85,7 @@ public class MovieRental {
         //Remove Movie
         controller.removeMovie("Star Wars: The Force Awakens");
         
-        //Change Keyword - add, remove or change keyword
+        //Remove Keyword
         controller.changeKeyword("LOL 1984", "");
         
         //Returning Rentals
