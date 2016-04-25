@@ -6,8 +6,10 @@
 package Business_Logic;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Locale;
 
 /**
  *
@@ -64,7 +66,7 @@ public class Controller {
     }
     
     //Function for testing
-    //Print out of Customers, Movies, and Rentals
+    //Print out of Customers, Movies, Rentals, and Requests
     public void printLists(){
         System.out.println("-------------------------");
         System.out.println("Customers: " + customers.size());
@@ -87,6 +89,13 @@ public class Controller {
         for(Rental rental:rentals){
             System.out.println(rental.info());
         } 
+        System.out.println("-------------------------");
+        System.out.println("Requests: " + requests.size());
+        System.out.println("-------------------------");
+        for(Request request:requests){
+            System.out.println(request.info());
+        } 
+        
     }
     
     //Function to add a new Customer
@@ -99,18 +108,18 @@ public class Controller {
     }
     
     //Function to add a new Rental
-    //Input: The current date, the return date and the status of the movie
+    //Input: The current date, the return date, customer name, and movie name
     //Output: Void
-    public void addRental (Calendar rentDate, Calendar returnDate, String sStatus, String customerName, String movieName){
+    public void addRental (Calendar rentDate, Calendar returnDate, String customerName, String movieName){
         Customer customer = searchCustomers(customerName);
         Movie movie = searchMovies(movieName);
         DVD dvd = movie.getDVD();
-        if(sStatus.equals("AVAILABLE")) {
-            Rental newRental = new Rental(rentDate, returnDate, Status.RENTED, customer, dvd);
+        if(dvd != null) {
+            Rental newRental = new Rental(rentDate, returnDate, customer, dvd);
             rentals.add(newRental);
         }
         else {
-            Request newRequest = new Request(rentDate, returnDate, getStatus(sStatus), customer, movie);
+            Request newRequest = new Request(rentDate, customer, movie);
             requests.add(newRequest);
         }
     }
@@ -120,14 +129,36 @@ public class Controller {
     //Output: Void
     public void returnRental(String customerName, int DVDid){
         Rental rental = searchRentals(customerName, DVDid);
+        Calendar today = Calendar.getInstance(Locale.US);
+        int days;
         //Changing rental status from RENTED to AVAILABLE
-        rental.setStatus(Status.AVAILABLE);
+        rental.getDvd().setStatus(Status.AVAILABLE);
+        //STILL NEEDS WORK...SUPPOSED TO FIGURE OUT PAYMENT
+        if (!rental.getDate().before(today)){
+            days = today.DAY_OF_MONTH - rental.getDate().DAY_OF_MONTH;
+        }
         for (Iterator<Rental> iter = rentals.listIterator(); iter.hasNext(); ) {
             Rental r = iter.next();
             if (r.contains(customerName) && r.contains(Integer.toString(DVDid))) {
                 iter.remove();
             }
         }
+    }
+    
+    //Function to pay late fee
+    //Input: Days late, payment method, and date
+    //Output: Payment object
+    public Payment lateFee(int daysLate, String method, Calendar date){
+        Payment p = makePayment(daysLate*.10, method,date);
+        return p;
+    }
+    
+    //Function to make payment
+    //Input: Amount, payment method, and date
+    //Output: Payment object
+    public Payment makePayment(double amount, String method, Calendar date){
+        Payment p = new Payment(amount, method , date);
+        return p;
     }
     
     //Function to add a new Movie
@@ -141,11 +172,11 @@ public class Controller {
     }
 
     //Function to add a avaiable DVD for a Movie
-    //Input: Search key, DVD serial number and lost status
+    //Input: Search key, DVD serial number ,lost , and rental status
     //Output: Void
-    public void addDVD(String Key, int SerialNo, boolean Status){
+    public void addDVD(String Key, int SerialNo, boolean Lost, String status){
         Movie movie = searchMovies(Key);
-        movie.addDVD(SerialNo, Status);
+        movie.addDVD(SerialNo, Lost, getStatus(status));
     }
     
     //Function to add Actors to a movie
@@ -180,6 +211,18 @@ public class Controller {
         movie.changeKeyword(keyword);
     }
     
+    //Function to remove requests and add rental
+    //Input: Customer name, and movie name
+    //Output: void
+    public void requestAnswered(String customerName, String movieName){
+        addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), customerName, movieName);
+        for (Iterator<Request> iter = requests.listIterator(); iter.hasNext(); ) {
+            Request r = iter.next();
+            if (r.contains(customerName) && r.contains(movieName)) {
+                iter.remove();
+            }
+        }
+    }
     
     //Function to add Reviews for a movie
     //Input: Movie name, Customer name, rating, and review
@@ -277,7 +320,7 @@ public class Controller {
         }
         return r;
     }
-    
+     
     //Function to search through Customers list
     //Input: String search key
     //Output: Customer object

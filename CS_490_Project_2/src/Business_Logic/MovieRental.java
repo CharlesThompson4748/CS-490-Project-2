@@ -38,17 +38,17 @@ public class MovieRental {
         controller.addMovie(1.8, 2015, "Star Wars: The Force Awakens", "Action","PG13");
         
         //Adding DVDs
-        controller.addDVD("Ted", 5654684, false);
-        controller.addDVD("Ted", 6846841, true);
-        controller.addDVD("Forest Gump", 3126845, false);
-        controller.addDVD("Forest Gump", 9561155, false);
-        controller.addDVD("That One Movie", 1234567, false);
-        controller.addDVD("That Other Movie", 2486842, false);
-        controller.addDVD("1984", 1000001, false);
-        controller.addDVD("1.8", 2225554, false);
-        controller.addDVD("2008", 5475685, true);
-        controller.addDVD("Another One", 7884545, false);
-        controller.addDVD("3.6", 7798451, false);
+        controller.addDVD("Ted", 5654684, false, "AVAILABLE");
+        controller.addDVD("Ted", 6846841, true, "AVAILABLE");
+        controller.addDVD("Forest Gump", 3126845, false, "AVAILABLE");
+        controller.addDVD("Forest Gump", 9561155, false, "AVAILABLE");
+        controller.addDVD("That One Movie", 1234567, false, "AVAILABLE");
+        controller.addDVD("That Other Movie", 2486842, false, "AVAILABLE");
+        controller.addDVD("1984", 1000001, false, "AVAILABLE");
+        controller.addDVD("1.8", 2225554, false, "AVAILABLE");
+        controller.addDVD("2008", 5475685, true, "AVAILABLE");
+        controller.addDVD("Another One", 7884545, false, "AVAILABLE");
+        controller.addDVD("3.6", 7798451, false, "AVAILABLE");
         
         //Adding Actors
         controller.addActor("Ted", "Mark Wallberg", "MALE");
@@ -64,11 +64,14 @@ public class MovieRental {
         controller.addActor("3.6", "Mr. T", "MALE");
         
         //Adding Rentals
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Bender Bending Rodriguez", "Ted");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Charles Thompson", "That One Movie");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Brandon Buckalew", "Another One");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Phillip J. Fry", "Forest Gump");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "AVAILABLE", "Katrina Flynn", "That Other Movie");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Bender Bending Rodriguez", "Ted");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Charles Thompson", "That One Movie");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Brandon Buckalew", "Another One");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Phillip J. Fry", "Forest Gump");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Katrina Flynn", "That Other Movie");
+        
+        //Adding Requests - Movie is already rented out
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Phillip J. Fry", "Another One");
         
         //Initial Print List
         controller.printLists();
@@ -93,6 +96,9 @@ public class MovieRental {
         controller.returnRental("Charles Thompson", 1234567);
         controller.returnRental("Phillip J. Fry", 3126845);
         controller.returnRental("Brandon Buckalew", 7884545);
+        
+        //Removing from Request and adding to Rentals
+        controller.requestAnswered("Phillip J. Fry", "Another One");
         
         //Print list after things were removed
         controller.printLists();

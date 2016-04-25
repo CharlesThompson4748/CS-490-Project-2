@@ -5,31 +5,45 @@
  */
 package Business_Logic;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
  *
  * @author charlie
  */
-public class Request {
+public class Request implements Searchable{
     //Class variables
-    private Status status;
     private Calendar requestDate;
-    private Calendar responseDate;
     private Customer customer;
     private Movie movie;
     
     //Class constructor
-    public Request (Calendar reqDate, Calendar resDate, Status status, Customer customer, Movie movie) {
+    public Request (Calendar reqDate, Customer customer, Movie movie) {
         this.requestDate = reqDate;
-        this.responseDate = resDate;
-        this.status = status;
         this.customer = customer;
         this.movie = movie;
     }
     
-    //Class setters
-    private void setStatus(Status status){
-        this.status = status;
+    //Class getters
+    public String getRequestDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        String date = dateFormat.format(requestDate.getTime());
+        return date;        
+    }
+    
+    @Override
+    public String info(){
+        return "Request Date: " + this.getRequestDate();
+    }
+    
+    @Override
+    public boolean contains(String key){
+        if(customer.getName().trim().toUpperCase().contains(key.trim().toUpperCase()))
+            return true;
+        else if(movie.getName().trim().toUpperCase().contains(key.trim().toUpperCase()))
+            return true;
+        else 
+            return false;
     }
 }

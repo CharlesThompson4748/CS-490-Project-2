@@ -17,17 +17,41 @@ public class Payment {
     public enum Method {CASH, CREDIT};
     
     //Class variables
-    private int amount;
+    private double amount;
     private Method paymentMethod;
     private Calendar paymentDate;
     
     //Class constructor
-    public Payment (int amount, Method payMethod, Calendar date){
+    public Payment (double amount, String payMethod, Calendar date){
         this.amount = amount;
-        this.paymentMethod = payMethod;
         this.paymentDate = date;
+        getPaymentMethod(payMethod);
+    }
+
+    //Class getters
+    public Method getPaymentMethod(String methodType) {
+        switch(methodType){
+        case"CASH":
+            paymentMethod = Method.CASH;
+            break;
+        case"CREDIT":
+            paymentMethod = Method.CREDIT;
+            break;
+        default:
+            paymentMethod = Method.CREDIT;
+            break;
+        }
+        return paymentMethod;
     }
     
+    //Function to calculate late fee
+    public double lateFee (int lateDays){
+        return lateDays*.10;
+    }
+    
+    //Function to process payment
+    //Input: Amount and payment type
+    //Output: boolean
     public boolean processPayment (int amount, Method type) {
         if(type == Method.CASH){
             System.out.println("Payment Processed");

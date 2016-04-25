@@ -13,16 +13,22 @@ public class DVD {
     //Class Variables
     private int serialNo;
     private boolean lost;
+    private Status status;
     
     //Class constructor
-    public DVD(int SN, boolean Lost) {
+    public DVD(int SN, boolean Lost, Status status) {
         this.serialNo = SN;
         this.lost = Lost;
+        this.status = status;
     }
     
     //Class Getters
     public int getSerialNo() {
         return serialNo;
+    }
+    
+    public Status getStatus() {
+        return status;
     }
 
     //Class Setters
@@ -30,6 +36,10 @@ public class DVD {
         return lost;
     }
 
+    public void setStatus(Status status){
+        this.status = status;
+    }
+    
     public void setLost(boolean lost) {
         this.lost = lost;
     }
@@ -37,6 +47,4 @@ public class DVD {
     public String info() {
         return "SerialNo: " + serialNo + " Lost: " + lost;
     }
-    
-    
 }

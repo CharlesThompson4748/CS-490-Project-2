@@ -17,29 +17,23 @@ public class Rental implements Searchable{
     //Class variables
     private Calendar rentalDate;
     private Calendar returnDate;
-    private Status status;
     private DVD dvd;
     private Review review;
     private Customer customer;
     
     //Class constructor
-    public Rental (Calendar RentDate, Calendar ReturnDate, Status status, Customer customer, DVD dvd){
+    public Rental (Calendar RentDate, Calendar ReturnDate, Customer customer, DVD dvd){
         this.rentalDate = RentDate;
         this.returnDate = ReturnDate;
-        this.status = status;
         this.customer = customer;
         this.dvd = dvd;
         setReturnDate();
     }
-    
+  
     //Class setters
     //This added 7 days to the date for return date
     private void setReturnDate(){
         returnDate.add(Calendar.DAY_OF_MONTH, 7);
-    }
-    
-    public void setStatus(Status status){
-        this.status = status;
     }
     
     //Class getters
@@ -49,16 +43,19 @@ public class Rental implements Searchable{
         return date;
     }
     
+    public DVD getDvd() {
+        return dvd;
+    }
+    
     public String getReturnDate(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");   
         String date = dateFormat.format(returnDate.getTime());
         return date;
     }
     
-    public Status getStatus() {
-        return status;
+    public Calendar getDate(){
+        return returnDate;
     }
-
     
     //Function to add a Review object to the reviews list
     //Input: Review object
@@ -70,7 +67,7 @@ public class Rental implements Searchable{
     //Functions for testing
     @Override
     public String info(){
-        return "Rental Date: " + this.getRentalDate() + "\nReturn Date: " + this.getReturnDate() + "\nStatus: " + this.status;
+        return "Rental Date: " + this.getRentalDate() + "\nReturn Date: " + this.getReturnDate();
     }
     
     @Override

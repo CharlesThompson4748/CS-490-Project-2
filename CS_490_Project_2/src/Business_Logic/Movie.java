@@ -49,10 +49,10 @@ public class Movie implements Searchable{
         }
     }
     //Function to add a DVD 
-    //Input: DVD serial number and the lost status
+    //Input: DVD serial number, lost, and rental status
     //Output: DVD object
-    public DVD addDVD (int SN, boolean Lost){
-        DVD newDVD = new DVD(SN, Lost);
+    public DVD addDVD (int SN, boolean Lost, Status status){
+        DVD newDVD = new DVD(SN, Lost, status);
         dvds.add(newDVD);
         return newDVD;
     }
@@ -130,12 +130,13 @@ public class Movie implements Searchable{
     }
     
     
-    //Fuction to find list of DVDs
+    //Fuction to find DVD and change status
     public DVD getDVD (){
         DVD d = null;
         for(DVD dvd:dvds){
-            if(dvd.isLost() == false){
+            if(dvd.getStatus().equals(Status.AVAILABLE)){
                 d = dvd;
+                d.setStatus(Status.RENTED);
                 break;
             }
         }
