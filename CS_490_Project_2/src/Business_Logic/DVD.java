@@ -45,6 +45,6 @@ public class DVD {
     }
     
     public String info() {
-        return "SerialNo: " + serialNo + " Lost: " + lost;
+        return "SerialNo: " + serialNo + "\nLost: " + lost;
     }
 }

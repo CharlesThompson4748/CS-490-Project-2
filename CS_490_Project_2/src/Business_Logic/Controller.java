@@ -74,7 +74,7 @@ public class Controller {
         for(Customer customer:customers){
             System.out.println(customer.info());
         }
-        System.out.println("-------------------------");
+        System.out.println("\n-------------------------");
         System.out.println("Movies: " + movies.size());
         System.out.println("-------------------------");
         for(Movie movie:movies){
@@ -83,13 +83,13 @@ public class Controller {
             System.out.println("\nActors");
             movie.printActors();
         }
-        System.out.println("-------------------------");
+        System.out.println("\n-------------------------");
         System.out.println("Rentals: " + rentals.size());
         System.out.println("-------------------------");
         for(Rental rental:rentals){
             System.out.println(rental.info());
         } 
-        System.out.println("-------------------------");
+        System.out.println("\n-------------------------");
         System.out.println("Requests: " + requests.size());
         System.out.println("-------------------------");
         for(Request request:requests){
@@ -115,7 +115,7 @@ public class Controller {
         Movie movie = searchMovies(movieName);
         DVD dvd = movie.getDVD();
         if(dvd != null) {
-            Rental newRental = new Rental(rentDate, returnDate, customer, dvd);
+            Rental newRental = new Rental(rentDate, returnDate, customer, dvd, movie);
             rentals.add(newRental);
         }
         else {

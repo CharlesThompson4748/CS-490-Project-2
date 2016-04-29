@@ -20,13 +20,15 @@ public class Rental implements Searchable{
     private DVD dvd;
     private Review review;
     private Customer customer;
+    private Movie movie;
     
     //Class constructor
-    public Rental (Calendar RentDate, Calendar ReturnDate, Customer customer, DVD dvd){
+    public Rental (Calendar RentDate, Calendar ReturnDate, Customer customer, DVD dvd, Movie movie){
         this.rentalDate = RentDate;
         this.returnDate = ReturnDate;
         this.customer = customer;
         this.dvd = dvd;
+        this.movie = movie;
         setReturnDate();
     }
   
@@ -67,7 +69,7 @@ public class Rental implements Searchable{
     //Functions for testing
     @Override
     public String info(){
-        return "Rental Date: " + this.getRentalDate() + "\nReturn Date: " + this.getReturnDate();
+        return "\nCustomer: " + this.customer.getName() + "\nMovie Rented: " + this.movie.getName() + "\nRental Date: " + this.getRentalDate() + "\nReturn Date: " + this.getReturnDate();
     }
     
     @Override

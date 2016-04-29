@@ -30,7 +30,7 @@ public class MovieRental {
         controller.addMovie(3.2, 2006, "That One Movie", "Comedy", "PG");
         controller.addMovie(1.2, 2010, "That Other Movie", "Thriller", "PG13");
         controller.addMovie(4.0, 2013, "Ted", "Comedy", "R");
-        controller.addMovie(5.0, 2001, "Forest Gump", "Drama", "PG13");
+        controller.addMovie(5.0, 2001, "Forrest Gump", "Drama", "PG13");
         controller.addMovie(4.2, 2008, "Some Movie Nobody Has Heard Of", "Drama","G");
         controller.addMovie(2.3, 2003, "Another One", "Comedy","G");
         controller.addMovie(3.6, 1999, "1999 I Don't Know Something Awefull", "Drama","R");
@@ -40,8 +40,8 @@ public class MovieRental {
         //Adding DVDs
         controller.addDVD("Ted", 5654684, false, "AVAILABLE");
         controller.addDVD("Ted", 6846841, true, "AVAILABLE");
-        controller.addDVD("Forest Gump", 3126845, false, "AVAILABLE");
-        controller.addDVD("Forest Gump", 9561155, false, "AVAILABLE");
+        controller.addDVD("Forrest Gump", 3126845, false, "AVAILABLE");
+        controller.addDVD("Forrest Gump", 9561155, false, "AVAILABLE");
         controller.addDVD("That One Movie", 1234567, false, "AVAILABLE");
         controller.addDVD("That Other Movie", 2486842, false, "AVAILABLE");
         controller.addDVD("1984", 1000001, false, "AVAILABLE");
@@ -53,8 +53,8 @@ public class MovieRental {
         //Adding Actors
         controller.addActor("Ted", "Mark Wallberg", "MALE");
         controller.addActor("Ted", "Mila Kunis", "FEMALE");
-        controller.addActor("Forest Gump", "Tom Hanks", "MALE");
-        controller.addActor("Forest Gump", "That Other Actor", "FEMALE");
+        controller.addActor("Forrest Gump", "Tom Hanks", "MALE");
+        controller.addActor("Forrest Gump", "That Other Actor", "FEMALE");
         controller.addActor("That One Movie", "Some Women", "FEMALE");
         controller.addActor("That Other Movie", "Some Man", "MALE");
         controller.addActor("1984", "Old Man Rivers", "MALE");
@@ -67,7 +67,7 @@ public class MovieRental {
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Bender Bending Rodriguez", "Ted");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Charles Thompson", "That One Movie");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Brandon Buckalew", "Another One");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Phillip J. Fry", "Forest Gump");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Phillip J. Fry", "Forrest Gump");
         controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Katrina Flynn", "That Other Movie");
         
         //Adding Requests - Movie is already rented out
@@ -107,6 +107,6 @@ public class MovieRental {
         controller.addReview("Ted", "Bender Bending Rodriguez", 4.8, "A bear that came to life and is a terrible influence on the main character, what isnt there to like.");
         controller.addReview("That One Movie", "Charles Thompson", 1.2, "Almost as bad as That Other Movie.");
         controller.addReview("Some Movie Nobody Has Herd Of", "Phillip J. Fry", 2.1, "So bad I forgot what it was even called.");
-        controller.addReview("1999 I Don't Know Something Awefull", "Brandon Buckalew", 8.2, "Surprisingly good.");
+        controller.addReview("1999 I Don't Know Something Awful", "Brandon Buckalew", 8.2, "Surprisingly good.");
     }
 }
