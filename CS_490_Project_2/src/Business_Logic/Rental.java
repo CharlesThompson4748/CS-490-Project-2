@@ -69,7 +69,11 @@ public class Rental implements Searchable{
     //Functions for testing
     @Override
     public String info(){
-        return "\nCustomer: " + this.customer.getName() + "\nMovie Rented: " + this.movie.getName() + "\nRental Date: " + this.getRentalDate() + "\nReturn Date: " + this.getReturnDate();
+        return "\nCustomer: " + this.customer.getName() + 
+                "\nMovie Rented: " + this.movie.getName() + 
+                "\nRental Date: " + this.getRentalDate() + 
+                "\nReturn Date: " + this.getReturnDate() + 
+                "\nStandard Cost: $2";
     }
     
     @Override

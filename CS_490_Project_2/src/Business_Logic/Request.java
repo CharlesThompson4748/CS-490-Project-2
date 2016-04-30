@@ -34,7 +34,9 @@ public class Request implements Searchable{
     
     @Override
     public String info(){
-        return "\nCustomer: " + this.customer.getName() + "\nMovie Requested: " + this.movie.getName() + "\nRequest Date: " + this.getRequestDate() + "\n";
+        return "\nCustomer: " + this.customer.getName() + 
+                "\nMovie Requested: " + this.movie.getName() + 
+                "\nRequest Date: " + this.getRequestDate();
     }
     
     @Override

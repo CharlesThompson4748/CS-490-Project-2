@@ -68,7 +68,7 @@ public class Controller {
     //Function for testing
     //Print out of Customers, Movies, Rentals, and Requests
     public void printLists(){
-        System.out.println("-------------------------");
+        System.out.println("\n-------------------------");
         System.out.println("Customers: " + customers.size());
         System.out.println("-------------------------");
         for(Customer customer:customers){

@@ -161,7 +161,11 @@ public class Movie implements Searchable{
     //For testing
     @Override
     public String info() {
-        return "\nYear: " + Integer.toString(year) + "\nTitle: " + name + "\nRating: " + String.valueOf(rating) + "\nKeyword: " + keyword.getKeyword() + "\n";
+        return "\nYear: " + Integer.toString(year) + 
+                "\nTitle: " + name + 
+                "\nRating: " + String.valueOf(rating) + 
+                "\nKeyword: " + keyword.getKeyword() + 
+                "\n";
      }
     
 }
