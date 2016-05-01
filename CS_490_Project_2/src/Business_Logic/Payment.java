@@ -49,14 +49,14 @@ public class Payment {
     //Output: boolean
     public boolean processPayment () {
         if(this.paymentMethod == Method.CASH){
-            System.out.println("Payment Processed");
+            System.out.println("Payment Processed for $" + this.amount);
             return true;
         }
         else if(this.paymentMethod == Method.CREDIT){
             Random random = new Random();
             int i = random.nextInt(1);
             if(i == 0){
-                System.out.println("Payment Processed");
+                System.out.println("Payment Processed for $" + this.amount);
                 return true;
             }
             else {
