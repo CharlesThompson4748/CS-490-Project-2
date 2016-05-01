@@ -29,35 +29,30 @@ public class Payment {
     }
 
     //Class getters
-    public Method getPaymentMethod(String methodType) {
+    public Method getPaymentMethod (String methodType) {
         switch(methodType){
-        case"CASH":
-            paymentMethod = Method.CASH;
-            break;
-        case"CREDIT":
-            paymentMethod = Method.CREDIT;
-            break;
-        default:
-            paymentMethod = Method.CREDIT;
-            break;
+            case "CASH":
+                paymentMethod = Method.CASH;
+                break;
+            case "CREDIT":
+                paymentMethod = Method.CREDIT;
+                break;
+            default:
+                paymentMethod = Method.CREDIT;
+                break;
         }
         return paymentMethod;
-    }
-    
-    //Function to calculate late fee
-    public double lateFee (int lateDays){
-        return lateDays*.10;
     }
     
     //Function to process payment
     //Input: Amount and payment type
     //Output: boolean
-    public boolean processPayment (int amount, Method type) {
-        if(type == Method.CASH){
+    public boolean processPayment () {
+        if(this.paymentMethod == Method.CASH){
             System.out.println("Payment Processed");
             return true;
         }
-        else if(type == Method.CREDIT){
+        else if(this.paymentMethod == Method.CREDIT){
             Random random = new Random();
             int i = random.nextInt(1);
             if(i == 0){

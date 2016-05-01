@@ -64,14 +64,14 @@ public class MovieRental {
         controller.addActor("3.6", "Mr. T", "MALE");
         
         //Adding Rentals
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Bender Bending Rodriguez", "Ted");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Charles Thompson", "That One Movie");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Brandon Buckalew", "Another One");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Phillip J. Fry", "Forrest Gump");
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Katrina Flynn", "That Other Movie");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Bender Bending Rodriguez", "Ted", "CASH");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Charles Thompson", "That One Movie", "CREDIT");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Brandon Buckalew", "Another One", "CREDIT");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Phillip J. Fry", "Forrest Gump", "CASH");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Katrina Flynn", "That Other Movie", "CASH");
         
         //Adding Requests - Movie is already rented out
-        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Phillip J. Fry", "Another One");
+        controller.addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), "Phillip J. Fry", "Another One", "CASH");
         
         //Initial Print List
         controller.printLists();
@@ -92,13 +92,13 @@ public class MovieRental {
         controller.changeKeyword("LOL 1984", "");
         
         //Returning Rentals
-        controller.returnRental("Bender Bending Rodriguez", 5654684);
-        controller.returnRental("Charles Thompson", 1234567);
-        controller.returnRental("Phillip J. Fry", 3126845);
-        controller.returnRental("Brandon Buckalew", 7884545);
+        controller.returnRental("Bender Bending Rodriguez", 5654684, "CASH");
+        controller.returnRental("Charles Thompson", 1234567, "CASH");
+        controller.returnRental("Phillip J. Fry", 3126845, "CREDIT");
+        controller.returnRental("Brandon Buckalew", 7884545, "CASH");
         
         //Removing from Request and adding to Rentals
-        controller.requestAnswered("Phillip J. Fry", "Another One");
+        controller.requestAnswered("Phillip J. Fry", "Another One", "CASH");
         
         //Print list after things were removed
         controller.printLists();

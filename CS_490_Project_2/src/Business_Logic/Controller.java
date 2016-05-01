@@ -26,12 +26,12 @@ public class Controller {
     private LinkedList<Movie> movies = new LinkedList<>();
     
     //Class Constructor
-    private Controller() {}
+    private Controller () {}
 
     //Function to return the Singleton class object
     //Input: None
     //Output: Class Singleton object
-    public static Controller instance() {
+    public static Controller instance () {
         //Determine if a class object has been created.
         if(Singleton == null) {
             //No class object created yet. Create one.
@@ -40,34 +40,10 @@ public class Controller {
         //Return the Singleton class object
         return Singleton;
     }
-    
-    //Function to iterate through customers and remove customer
-    //Input: Email
-    //Output: void
-    public void removeCustomer(String email){
-        for (Iterator<Customer> iter = customers.listIterator(); iter.hasNext(); ) {
-            Customer c = iter.next();
-            if (c.getEmail().contains(email)) {
-                iter.remove();
-            }
-        }
-    }
-    
-    //Function to iterate through movies and remove movie
-    //Input: Movie name
-    //Output: void
-    public void removeMovie(String movieName){
-        for (Iterator<Movie> iter = movies.listIterator(); iter.hasNext(); ) {
-            Movie m = iter.next();
-            if (m.getName().contains(movieName)) {
-                iter.remove();
-            }
-        }
-    }
-    
+        
     //Function for testing
     //Print out of Customers, Movies, Rentals, and Requests
-    public void printLists(){
+    public void printLists (){
         System.out.println("\n-------------------------");
         System.out.println("Customers: " + customers.size());
         System.out.println("-------------------------");
@@ -94,14 +70,13 @@ public class Controller {
         System.out.println("-------------------------");
         for(Request request:requests){
             System.out.println(request.info());
-        } 
-        
+        }     
     }
     
     //Function to add a new Customer
     //Input: Customer email, name, address, phone number, and password
     //Output: Customer object
-    public Customer addCustomer(String email, String name, String address, String phone, String password) {
+    public Customer addCustomer (String email, String name, String address, String phone, String password) {
         Customer newCustomer = new Customer(email, name, address, phone, password);
         customers.add(newCustomer);
         return newCustomer;
@@ -110,57 +85,21 @@ public class Controller {
     //Function to add a new Rental
     //Input: The current date, the return date, customer name, and movie name
     //Output: Void
-    public void addRental (Calendar rentDate, Calendar returnDate, String customerName, String movieName){
+    public void addRental (Calendar rentDate, Calendar returnDate, String customerName, String movieName, String method){
         Customer customer = searchCustomers(customerName);
         Movie movie = searchMovies(movieName);
         DVD dvd = movie.getDVD();
         if(dvd != null) {
             Rental newRental = new Rental(rentDate, returnDate, customer, dvd, movie);
             rentals.add(newRental);
+            makePayment(2.00, method, rentDate);
         }
         else {
             Request newRequest = new Request(rentDate, customer, movie);
             requests.add(newRequest);
         }
     }
-    
-    //Function to return Rental
-    //Input: Customer Name and DVD id
-    //Output: Void
-    public void returnRental(String customerName, int DVDid){
-        Rental rental = searchRentals(customerName, DVDid);
-        Calendar today = Calendar.getInstance(Locale.US);
-        int days;
-        //Changing rental status from RENTED to AVAILABLE
-        rental.getDvd().setStatus(Status.AVAILABLE);
-        //STILL NEEDS WORK...SUPPOSED TO FIGURE OUT PAYMENT
-        if (!rental.getDate().before(today)){
-            days = today.DAY_OF_MONTH - rental.getDate().DAY_OF_MONTH;
-        }
-        for (Iterator<Rental> iter = rentals.listIterator(); iter.hasNext(); ) {
-            Rental r = iter.next();
-            if (r.contains(customerName) && r.contains(Integer.toString(DVDid))) {
-                iter.remove();
-            }
-        }
-    }
-    
-    //Function to pay late fee
-    //Input: Days late, payment method, and date
-    //Output: Payment object
-    public Payment lateFee(int daysLate, String method, Calendar date){
-        Payment p = makePayment(daysLate*.10, method,date);
-        return p;
-    }
-    
-    //Function to make payment
-    //Input: Amount, payment method, and date
-    //Output: Payment object
-    public Payment makePayment(double amount, String method, Calendar date){
-        Payment p = new Payment(amount, method , date);
-        return p;
-    }
-    
+        
     //Function to add a new Movie
     //Input: The movie rating, year made, and name
     //Ouput: Movie object
@@ -174,7 +113,7 @@ public class Controller {
     //Function to add a avaiable DVD for a Movie
     //Input: Search key, DVD serial number ,lost , and rental status
     //Output: Void
-    public void addDVD(String Key, int SerialNo, boolean Lost, String status){
+    public void addDVD (String Key, int SerialNo, boolean Lost, String status){
         Movie movie = searchMovies(Key);
         movie.addDVD(SerialNo, Lost, getStatus(status));
     }
@@ -182,15 +121,55 @@ public class Controller {
     //Function to add Actors to a movie
     //Input: Search key, Actor name and gender
     //Output: Void
-    public void addActor(String Key, String Name, String Gender) {
+    public void addActor (String Key, String Name, String Gender) {
         Movie movie = searchMovies(Key);
         movie.addActor(Name, getGender(Gender));
+    }
+        
+    //Function to add Reviews for a movie
+    //Input: Movie name, Customer name, rating, and review
+    //Output: Void
+    public void addReview (String Movie, String Customer, double Rating, String Review) {
+        Customer customer = searchCustomers(Customer);
+        Movie movie = searchMovies(Movie);
+        Review review = new Review(customer, movie, Rating, Review);
+    }
+    
+    //Function to return Rental
+    //Input: Customer Name and DVD id
+    //Output: Void
+    public void returnRental (String customerName, int DVDid, String method){
+        Rental rental = searchRentals(customerName, DVDid);
+        Calendar today = Calendar.getInstance(Locale.US);
+        int days;
+        //Changing rental status from RENTED to AVAILABLE
+        rental.getDvd().setStatus(Status.AVAILABLE);
+        if (rental.getDate().before(today)){
+            days = today.DAY_OF_MONTH - rental.getDate().DAY_OF_MONTH;
+            System.out.println("\nRental " + days + " days late processing late fee payment\n");
+            makePayment(days*.1, method, today);
+        }
+        for (Iterator<Rental> iter = rentals.listIterator(); iter.hasNext(); ) {
+            Rental r = iter.next();
+            if (r.contains(customerName) && r.contains(Integer.toString(DVDid))) {
+                iter.remove();
+            }
+        }
+    }
+    
+    //Function to make payment
+    //Input: Amount, payment method, and date
+    //Output: Payment object
+    public Payment makePayment (double amount, String method, Calendar date){
+        Payment p = new Payment(amount, method , date);
+        p.processPayment();
+        return p;
     }
     
     //Function to remove actors from a movie
     //Input: Actor and Movie Title
     //Output: void
-    public void removeActor(String actor, String movieTitle){
+    public void removeActor (String actor, String movieTitle){
         Movie movie = searchMovies(movieTitle);
         movie.removeActor(actor);
     }
@@ -198,45 +177,60 @@ public class Controller {
     //Function to remove DVD from a movie
     //Input: Movie title and DVD id
     //Output: void
-    public void removeDVD(String movieTitle, int DVDid){
+    public void removeDVD (String movieTitle, int DVDid){
         Movie movie = searchMovies(movieTitle);
         movie.removeDVD(DVDid);
     }
-    
-    //Function to change keyword in a movie
-    //Input: Movie title and keyword
+        
+    //Function to iterate through customers and remove customer
+    //Input: Email
     //Output: void
-    public void changeKeyword(String movieTitle, String keyword){
-        Movie movie = searchMovies(movieTitle);
-        movie.changeKeyword(keyword);
+    public void removeCustomer (String email){
+        for (Iterator<Customer> iter = customers.listIterator(); iter.hasNext(); ) {
+            Customer c = iter.next();
+            if (c.getEmail().contains(email)) {
+                iter.remove();
+            }
+        }
+    }
+    
+    //Function to iterate through movies and remove movie
+    //Input: Movie name
+    //Output: void
+    public void removeMovie (String movieName){
+        for (Iterator<Movie> iter = movies.listIterator(); iter.hasNext(); ) {
+            Movie m = iter.next();
+            if (m.getName().contains(movieName)) {
+                iter.remove();
+            }
+        }
     }
     
     //Function to remove requests and add rental
     //Input: Customer name, and movie name
     //Output: void
-    public void requestAnswered(String customerName, String movieName){
-        addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), customerName, movieName);
+    public void requestAnswered (String customerName, String movieName, String method){
+        addRental(GregorianCalendar.getInstance(Locale.US), GregorianCalendar.getInstance(Locale.US), customerName, movieName, method);
         for (Iterator<Request> iter = requests.listIterator(); iter.hasNext(); ) {
             Request r = iter.next();
             if (r.contains(customerName) && r.contains(movieName)) {
                 iter.remove();
             }
         }
-    }
-    
-    //Function to add Reviews for a movie
-    //Input: Movie name, Customer name, rating, and review
-    //Output: Void
-    public void addReview(String Movie, String Customer, double Rating, String Review) {
-        Customer customer = searchCustomers(Customer);
-        Movie movie = searchMovies(Movie);
-        Review review = new Review(customer, movie, Rating, Review);
+    }  
+        
+    //Function to change keyword in a movie
+    //Input: Movie title and keyword
+    //Output: void
+    public void changeKeyword (String movieTitle, String keyword){
+        Movie movie = searchMovies(movieTitle);
+        movie.changeKeyword(keyword);
     }
     
     //Function to convert a String to an Gender enum object
     //Input: String gender
     //Ouput: Gender enum object
-    private Gender getGender(String gender) {
+    private Gender getGender (String gender) {
         //Remove any whitespace and conver to upper case
         String type = gender.trim().toUpperCase();
         //Compare input to specific values
@@ -255,7 +249,7 @@ public class Controller {
     //Funtion to convert a String to a Type enum object
     //Input: String type
     //Output: Type enum object
-    private Type getType(String type) {
+    private Type getType (String type) {
         //Remove any whitespace and conver to upper case
         String stringType = type.trim().toUpperCase();
         //Compare input to specific values
@@ -276,7 +270,7 @@ public class Controller {
     //Function to convert a String to an Status enum object
     //Input: String status
     //Ouput: Status enum object
-    private Status getStatus(String status) {
+    private Status getStatus (String status) {
         //Remove any whitespace and convert to upper case
         String type = status.trim().toUpperCase();
         //Compare input to specific values
